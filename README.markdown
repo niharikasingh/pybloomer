@@ -1,17 +1,16 @@
-# pybloomfiltermmap3
+# pybloomer
 
-[pybloomfiltermmap3](https://github.com/prashnts/pybloomfiltermmap3) is a Python 3 compatible fork of [pybloomfiltermmap](https://github.com/axiak/pybloomfiltermmap) by [@axiak](https://github.com/axiak).
+[pybloomer](https://github.com/masroore/pybloomer) is a Python 3 compatible fork of [pybloomfiltermmap](https://github.com/axiak/pybloomfiltermmap) by [@axiak](https://github.com/axiak).
 
-The goal of `pybloomfiltermmap3` is simple: to provide a fast, simple, scalable, correct library for Bloom filters in Python.
+The goal of `pybloomer` is simple: to provide a fast, simple, scalable, correct library for Bloom filters in Python.
 
-[![Build Status](https://travis-ci.org/PrashntS/pybloomfiltermmap3.svg?branch=master)](https://travis-ci.org/PrashntS/pybloomfiltermmap3)
-[![Documentation Status](https://readthedocs.org/projects/pybloomfiltermmap3/badge/?version=latest)](https://pybloomfiltermmap3.readthedocs.io/en/latest/?badge=latest)
-[![PyPI](https://img.shields.io/pypi/v/pybloomfiltermmap3.svg)](https://pypi.python.org/pypi/pybloomfiltermmap3)
-[![PyPI](https://img.shields.io/pypi/dw/pybloomfiltermmap3.svg)](https://pypi.python.org/pypi/pybloomfiltermmap3)
-[![PyPI](https://img.shields.io/pypi/pyversions/pybloomfiltermmap3.svg)](https://pypi.python.org/pypi/pybloomfiltermmap3)
+[![Documentation Status](https://readthedocs.org/projects/pybloomer/badge/?version=latest)](https://pybloomer.readthedocs.io/en/latest/?badge=latest)
+[![PyPI](https://img.shields.io/pypi/v/pybloomer.svg)](https://pypi.python.org/pypi/pybloomer)
+[![PyPI](https://img.shields.io/pypi/dw/pybloomer.svg)](https://pypi.python.org/pypi/pybloomer)
+[![PyPI](https://img.shields.io/pypi/pyversions/pybloomer.svg)](https://pypi.python.org/pypi/pybloomer)
 
 
-## Why pybloomfiltermmap3?
+## Why pybloomer?
 
 There are a couple reasons to use this module:
 
@@ -25,8 +24,8 @@ There are a couple reasons to use this module:
 After you install, the interface to use is a cross between a file
 interface and an ste interface. As an example:
 ```python
-    >>> import pybloomfilter
-    >>> fruit = pybloomfilter.BloomFilter(100000, 0.1, '/tmp/words.bloom')
+    >>> import pybloomer
+    >>> fruit = pybloomer.BloomFilter(100000, 0.1, '/tmp/words.bloom')
     >>> fruit.update(('apple', 'pear', 'orange', 'apple'))
     >>> len(fruit)
     3
@@ -38,14 +37,14 @@ interface and an ste interface. As an example:
 
 To create an in-memory filter, simply omit the file location:
 ```python
-    >>> cakes = pybloomfilter.BloomFilter(10000, 0.1)
+    >>> cakes = pybloomer.BloomFilter(10000, 0.1)
 ```
 *Caveat*: it is currently not possible to persist this filter later.
 
 
 ## Docs
 
-Current docs are available at [pybloomfiltermmap3.rtfd.io](https://pybloomfiltermmap3.readthedocs.io/en/latest).
+Current docs are available at [pybloomer.rtfd.io](https://pybloomer.readthedocs.io/en/latest).
 
 
 ## Install
@@ -53,7 +52,7 @@ Current docs are available at [pybloomfiltermmap3.rtfd.io](https://pybloomfilter
 To install:
 
 ```shell
-    $ pip install pybloomfiltermmap3
+    $ pip install pybloomer
 ```
 
 and you should be set.
@@ -65,7 +64,7 @@ This library is specifically meant for Python 3.5 and above. [As of 2020](https:
 
 ## History and Future
 
-[pybloomfiltermmap](https://github.com/axiak/pybloomfiltermmap) is an excellent Bloom filter implementation for Python 2 by [@axiak](https://github.com/axiak) and contributors. I, [@prashnts](https://github.com/prashnts), made initial changes to add support for Python 3 sometime in 2016 as the current [pybloomfiltermmap3](https://pypi.org/project/pybloomfiltermmap3/) on `PyPI`. Since then, with the help of contributors, there have been incremental improvements and bug fixes while maintaining the API from versions `0.4.x` and below.
+[pybloomfiltermmap](https://github.com/axiak/pybloomfiltermmap) is an excellent Bloom filter implementation for Python 2 by [@axiak](https://github.com/axiak) and contributors. I, [@prashnts](https://github.com/prashnts), made initial changes to add support for Python 3 sometime in 2016 as the current [pybloomer](https://pypi.org/project/pybloomer/) on `PyPI`. Since then, with the help of contributors, there have been incremental improvements and bug fixes while maintaining the API from versions `0.4.x` and below.
 
 Some new features and changes were first introduced in version `0.5.0`. From this point on, the goal is to reach stability, as well as add a few more APIs to expand upon the use cases. While we can't guarantee that we won't change the current interface, the transition from versions `0.4.x` and below should be quick one liners. Please open an issue if we broke your build!
 
@@ -75,14 +74,12 @@ Suggestions, bug reports, and / or patches are welcome!
 ## Contributions and development
 
 When contributing, you should set up an appropriate Python 3 environment and install the dependencies listed in `requirements-dev.txt`.
-Package installation depends on a generated `pybloomfilter.c` file, which requires Cython module to be in your current environment.
+Package installation depends on a generated `pybloomer.c` file, which requires Cython module to be in your current environment.
 
 
 ## Maintainers
 
-* [Prashant Sinha](https://github.com/prashnts)
-* [Vytautas Mizgiris](https://github.com/vmizg)
-
+* [Dr. Masroor Ehsan](https://github.com/masroore)
 
 ## License
 
