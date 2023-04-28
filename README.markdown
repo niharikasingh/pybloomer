@@ -34,21 +34,21 @@ To install `pybloomer`, use the Python 3 version of pip:
 Here’s a quick example:
 
 ```python
-    >> > import pybloomer
->> > fruits = pybloomer.BloomFilter(capacity=10000000, error_rate=0.01, filename='/tmp/fruits.bloom')
->> > fruits.update(('apple', 'pear', 'orange', 'apple'))
->> > len(fruits)
+>>> import pybloomer
+>>> fruits = pybloomer.BloomFilter(capacity=10000000, error_rate=0.01, filename='/tmp/fruits.bloom')
+>>> fruits.update(('apple', 'pear', 'orange', 'apple'))
+>>> len(fruits)
 3
->> > 'mike' in fruits
+>>> 'mike' in fruits
 False
->> > 'orange' in fruits
+>>> 'orange' in fruits
 True
 ```
 
 To create an in-memory filter, simply omit the file location:
 
 ```python
-    >> > cake_ingredients = pybloomer.BloomFilter(capacity=1000, error_rate=0.1)
+cake_ingredients = pybloomer.BloomFilter(capacity=1000, error_rate=0.1)
 ```
 
 *Caveat*: in-memory filters cannot be persisted to disk.
