@@ -40,7 +40,7 @@ if "--cython" in sys.argv:
     force_cythonize = True
     sys.argv.remove("--cython")
 
-# Always try to cythonize `pybloomfilter.pyx` if Cython is available
+# Always try to cythonize `pybloomer.pyx` if Cython is available
 # or if `--cython` was passed
 try:
     from Cython.Distutils import build_ext
@@ -55,14 +55,14 @@ except ModuleNotFoundError:
     cythonize = False
 
 if cythonize:
-    ext_files.append("src/pybloomfilter.pyx")
+    ext_files.append("src/pybloomer.pyx")
     setup_kwargs["cmdclass"] = {"build_ext": build_ext}
 else:
     # Use `pybloomfilter.c` distributed with the package.
     # Note that we let the exception bubble up if `pybloomfilter.c` doesn't exist.
-    ext_files.append("src/pybloomfilter.c")
+    ext_files.append("src/pybloomer.c")
 
-ext_modules = [Extension("pybloomfilter", ext_files)]
+ext_modules = [Extension("pybloomer", ext_files)]
 
 setup(
     name="pybloomer",
