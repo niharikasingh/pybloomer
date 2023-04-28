@@ -57,21 +57,9 @@ To install:
 
 and you should be set.
 
-### Note to Python 2 to < 3.5 users
-
-This library is specifically meant for Python 3.5 and above. [As of 2020](https://www.python.org/doc/sunset-python-2/), we strongly advise you to switch to an actively maintained distribution of Python 3. If for any reason your current environment is restricted to Python 2, please see [pybloomfiltermmap](https://github.com/axiak/pybloomfiltermmap). Please note that the latter is not actively maintained and will lack bug fixes and new features.
-
-
-## History and Future
-
-[pybloomfiltermmap](https://github.com/axiak/pybloomfiltermmap) is an excellent Bloom filter implementation for Python 2 by [@axiak](https://github.com/axiak) and contributors. I, [@prashnts](https://github.com/prashnts), made initial changes to add support for Python 3 sometime in 2016 as the current [pybloomer](https://pypi.org/project/pybloomer/) on `PyPI`. Since then, with the help of contributors, there have been incremental improvements and bug fixes while maintaining the API from versions `0.4.x` and below.
-
-Some new features and changes were first introduced in version `0.5.0`. From this point on, the goal is to reach stability, as well as add a few more APIs to expand upon the use cases. While we can't guarantee that we won't change the current interface, the transition from versions `0.4.x` and below should be quick one liners. Please open an issue if we broke your build!
+## Contributions and development
 
 Suggestions, bug reports, and / or patches are welcome!
-
-
-## Contributions and development
 
 When contributing, you should set up an appropriate Python 3 environment and install the dependencies listed in `requirements-dev.txt`.
 Package installation depends on a generated `pybloomer.c` file, which requires Cython module to be in your current environment.
