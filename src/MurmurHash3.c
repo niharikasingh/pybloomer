@@ -10,6 +10,7 @@
 // modification in mmh3:
 // __attribute__((always_inline)) is replaced to inline by Hajime Senuma
 
+#include "platform.h"
 #include "MurmurHash3.h"
 
 //-----------------------------------------------------------------------------
@@ -18,8 +19,6 @@
 // Microsoft Visual Studio
 
 #if defined(_MSC_VER)
-
-#define FORCE_INLINE	__forceinline
 
 #include <stdlib.h>
 
@@ -31,12 +30,6 @@
 // Other compilers
 
 #else	// defined(_MSC_VER)
-
-#ifdef __GNUC__
-#define FORCE_INLINE __attribute__((always_inline)) inline
-#else
-#define FORCE_INLINE inline
-#endif
 
 static FORCE_INLINE uint32_t rotl32 ( uint32_t x, int8_t r )
 {

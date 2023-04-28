@@ -1,17 +1,18 @@
 #ifndef __BLOOMFILTER_C
 #define __BLOOMFILTER_C
+
 #include <string.h>
 #include <errno.h>
-#include <stdio.h>
 #include <fcntl.h>
-#include "md5.h"
 
+#include "md5.h"
+#include "platform.h"
 #include "bloomfilter.h"
+#include "MurmurHash3.h"
 
 BloomFilter *bloomfilter_Create_Malloc(size_t max_num_elem, double error_rate,
-                                BTYPE num_bits, int *hash_seeds, int num_hashes)
-{
-    BloomFilter * bf = (BloomFilter *)malloc(sizeof(BloomFilter));
+                                       BTYPE num_bits, int *hash_seeds, int num_hashes) {
+    BloomFilter *bf = (BloomFilter *) malloc(sizeof(BloomFilter));
     MBArray * array;
 
     if (!bf) {
@@ -43,10 +44,9 @@ BloomFilter *bloomfilter_Create_Malloc(size_t max_num_elem, double error_rate,
 
 
 BloomFilter *bloomfilter_Create_Mmap(size_t max_num_elem, double error_rate,
-                                const char * file, BTYPE num_bits, int oflags, int perms,
-                                int *hash_seeds, int num_hashes)
-{
-    BloomFilter * bf = (BloomFilter *)malloc(sizeof(BloomFilter));
+                                     const char *file, BTYPE num_bits, int oflags, int perms,
+                                     int *hash_seeds, int num_hashes) {
+    BloomFilter *bf = (BloomFilter *) malloc(sizeof(BloomFilter));
     MBArray * array;
 
     if (!bf) {
@@ -62,10 +62,10 @@ BloomFilter *bloomfilter_Create_Mmap(size_t max_num_elem, double error_rate,
     bf->bf_version = BF_CURRENT_VERSION;
     bf->elem_count = 0;
     bf->array = NULL;
-    memset(bf->reserved, 0,  sizeof(uint32_t) * 32);
+    memset(bf->reserved, 0, sizeof(uint32_t) * 32);
     memset(bf->hash_seeds, 0, sizeof(uint32_t) * 256);
     memcpy(bf->hash_seeds, hash_seeds, sizeof(uint32_t) * num_hashes);
-    array = mbarray_Create_Mmap(num_bits, file, (char *)bf, sizeof(BloomFilter), oflags, perms);
+    array = mbarray_Create_Mmap(num_bits, file, (char *) bf, sizeof(BloomFilter), oflags, perms);
     if (!array) {
         bloomfilter_Destroy(bf);
         return NULL;
@@ -77,7 +77,7 @@ BloomFilter *bloomfilter_Create_Mmap(size_t max_num_elem, double error_rate,
        By calling mbarray_Header, we copy that header data
        back into this BloomFilter object.
     */
-    if (mbarray_Header((char *)bf, array, sizeof(BloomFilter)) == NULL) {
+    if (mbarray_Header((char *) bf, array, sizeof(BloomFilter)) == NULL) {
         bloomfilter_Destroy(bf);
         mbarray_Destroy(array);
         return NULL;
@@ -91,8 +91,7 @@ BloomFilter *bloomfilter_Create_Mmap(size_t max_num_elem, double error_rate,
 }
 
 
-void bloomfilter_Destroy(BloomFilter * bf)
-{
+void bloomfilter_Destroy(BloomFilter *bf) {
     if (bf) {
         if (bf->array) {
             mbarray_Destroy(bf->array);
@@ -103,21 +102,19 @@ void bloomfilter_Destroy(BloomFilter * bf)
 }
 
 
-void bloomfilter_Print(BloomFilter * bf)
-{
+void bloomfilter_Print(BloomFilter *bf) {
     printf("<BloomFilter num: %lu, error: %0.3f, num_hashes: %d>\n",
-           (unsigned long)bf->max_num_elem, bf->error_rate, bf->num_hashes);
+           (unsigned long) bf->max_num_elem, bf->error_rate, bf->num_hashes);
 }
 
 
-int bloomfilter_Update(BloomFilter * bf, char * data, int size)
-{
+int bloomfilter_Update(BloomFilter *bf, char *data, int size) {
     MBArray * array = bf->array;
     int retval = mbarray_Update(bf->array, data, size);
     if (retval) {
         return retval;
     }
-    if (mbarray_Header((char *)bf, array, sizeof(BloomFilter)) == NULL) {
+    if (mbarray_Header((char *) bf, array, sizeof(BloomFilter)) == NULL) {
         return 1;
     }
     bf->array = array;
@@ -125,8 +122,7 @@ int bloomfilter_Update(BloomFilter * bf, char * data, int size)
 }
 
 
-int bloomfilter_Clear(BloomFilter * bf)
-{
+int bloomfilter_Clear(BloomFilter *bf) {
     int retval = mbarray_ClearAll(bf->array);
     if (retval) {
         return retval;
@@ -136,9 +132,8 @@ int bloomfilter_Clear(BloomFilter * bf)
 }
 
 
-BloomFilter * bloomfilter_Copy_Template(BloomFilter * src, char * filename, int perms)
-{
-    BloomFilter * bf = (BloomFilter *)malloc(sizeof(BloomFilter));
+BloomFilter *bloomfilter_Copy_Template(BloomFilter *src, char *filename, int perms) {
+    BloomFilter *bf = (BloomFilter *) malloc(sizeof(BloomFilter));
     MBArray * array;
 
     if (bf == NULL) {
@@ -153,7 +148,7 @@ BloomFilter * bloomfilter_Copy_Template(BloomFilter * src, char * filename, int 
         return NULL;
     }
 
-    if (mbarray_Header((char *)bf, array, sizeof(BloomFilter)) == NULL) {
+    if (mbarray_Header((char *) bf, array, sizeof(BloomFilter)) == NULL) {
         bloomfilter_Destroy(bf);
         mbarray_Destroy(array);
         return NULL;
@@ -164,10 +159,10 @@ BloomFilter * bloomfilter_Copy_Template(BloomFilter * src, char * filename, int 
 }
 
 
-BTYPE _hash_long(uint32_t hash_seed, Key * key) {
+BTYPE _hash_long(uint32_t hash_seed, Key *key) {
     Key newKey = {
-        .shash = (char *)&key->nhash,
-        .nhash = sizeof(key->nhash)
+            .shash = (char *) &key->nhash,
+            .nhash = sizeof(key->nhash)
     };
 
     return _hash_char(hash_seed, &newKey);
@@ -193,16 +188,17 @@ uint32_t _hash_char(uint32_t hash_seed, Key * key) {
 */
 
 /* Code for MurmurHash3 */
-#include "MurmurHash3.h"
-BTYPE _hash_char(uint32_t hash_seed, Key * key) {
+BTYPE _hash_char(uint32_t hash_seed, Key *key) {
     BTYPE hashed_pieces[2];
-    MurmurHash3_x64_128((const void *)key->shash, (int)key->nhash,
-                       hash_seed, &hashed_pieces);
+    MurmurHash3_x64_128((const void *) key->shash, (int) key->nhash,
+                        hash_seed, &hashed_pieces);
     return hashed_pieces[0] ^ hashed_pieces[1];
 }
 
 
 #if 0
+#include <stdio.h>
+
 int main(int argc, char **argv)
 {
     int hash_seeds[5] = { 4234 , 2123, 4434, 444, 12123};
@@ -238,4 +234,4 @@ int main(int argc, char **argv)
     return 255;
 }
 #endif
-#endif
+#endif // __BLOOMFILTER_C
