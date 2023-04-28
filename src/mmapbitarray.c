@@ -1,13 +1,18 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include <sys/mman.h>
 #include <errno.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <unistd.h>
 #include <math.h>
 #include <time.h>
+#if defined(_MSC_VER)
+#include "win/mman.h"
+#include "win/unistd.h"
+#else
+#include <sys/mman.h>
+#include <unistd.h>
+#endif
 
 #include "mmapbitarray.h"
 
@@ -401,7 +406,7 @@ int mbarray_Update(MBArray * array, char * data, int size)
     return 0;
 }
 
-static inline int _assert_comparable(MBArray * array1, MBArray * array2)
+static FORCE_INLINE int _assert_comparable(MBArray * array1, MBArray * array2)
 {
     errno = EINVAL;
     if (array1->preamblebytes != array2->preamblebytes) {
@@ -414,14 +419,11 @@ static inline int _assert_comparable(MBArray * array1, MBArray * array2)
 
     return 0;
 }
-__attribute__((always_inline))
 
-
-static inline size_t _mmap_size(MBArray * array)
+static FORCE_INLINE size_t _mmap_size(MBArray * array)
 {
     return array->bytes + array->preamblebytes;
 }
-__attribute__((always_inline))
 
 
 static inline int _valid_magic(int fd)

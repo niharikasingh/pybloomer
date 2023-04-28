@@ -4,6 +4,7 @@
 #include <string.h>
 #include <errno.h>
 #include <fcntl.h>
+#include <stdio.h>
 
 #include "md5.h"
 #include "platform.h"
@@ -197,8 +198,6 @@ BTYPE _hash_char(uint32_t hash_seed, Key *key) {
 
 
 #if 0
-#include <stdio.h>
-
 int main(int argc, char **argv)
 {
     int hash_seeds[5] = { 4234 , 2123, 4434, 444, 12123};

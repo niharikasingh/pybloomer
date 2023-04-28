@@ -22,6 +22,15 @@ ext_files = [
     "src/MurmurHash3.c",
 ]
 
+if os.name == "nt":
+    ext_files.extend(
+        [
+            "src/win/io_win.c",
+            "src/win/mman.c",
+            # 'src/win/getopt.c',
+        ]
+    )
+
 # Branch out based on `--cython` in `argv`. Specifying `--cython` will try to cythonize source whether
 # Cython module is available or not (`force_cythonize`).
 cythonize = True
@@ -56,12 +65,12 @@ else:
 ext_modules = [Extension("pybloomfilter", ext_files)]
 
 setup(
-    name="pybloomfiltermmap3",
+    name="pybloomer",
     version="0.5.7",
-    author="Prashant Sinha",
-    author_email="prashant@noop.pw",
-    url="https://github.com/prashnts/pybloomfiltermmap3",
-    description="A fast implementation of Bloom filter for Python 3 built on mmap",
+    author="Dr. Masroor Ehsan",
+    author_email="masroore+pypi@gmail.com",
+    url="https://github.com/masroore/pybloomer",
+    description="A fast implementation of Bloom filter for Python built on mmap",
     long_description=long_description,
     long_description_content_type="text/markdown",
     license="MIT License",
