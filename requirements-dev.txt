@@ -1,3 +1,4 @@
 Cython==0.29.34
 Sphinx==6.2.1
 furo==2023.3.27
+sphinx-jekyll-builder==0.3.0

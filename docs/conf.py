@@ -19,7 +19,9 @@
 
 project = "pybloomer"
 copyright = "2010 - 2023, Michael Axiak, Dr. Masroor Ehsan, Prashant Sinha, Vytautas Mizgiris and others"
-author = "Michael Axiak, Dr. Masroor Ehsan,  Prashant Sinha, Vytautas Mizgiris and others"
+author = (
+    "Michael Axiak, Dr. Masroor Ehsan,  Prashant Sinha, Vytautas Mizgiris and others"
+)
 
 # The full version, including alpha/beta/rc tags
 release = "0.6.0"
@@ -35,7 +37,7 @@ master_doc = "index"
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = []
+extensions = ["sphinx_jekyll_builder"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
