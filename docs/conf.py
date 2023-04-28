@@ -17,12 +17,12 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "pybloomfiltermmap3"
-copyright = "2010 - 2019, Michael Axiak, Prashant Sinha, Vytautas Mizgiris and others"
-author = "Michael Axiak, Prashant Sinha, Vytautas Mizgiris and others"
+project = "pybloomer"
+copyright = "2010 - 2023, Michael Axiak, Dr. Masroor Ehsan, Prashant Sinha, Vytautas Mizgiris and others"
+author = "Michael Axiak, Dr. Masroor Ehsan,  Prashant Sinha, Vytautas Mizgiris and others"
 
 # The full version, including alpha/beta/rc tags
-release = "0.5.2"
+release = "0.6.0"
 version = "latest"
 
 
@@ -51,7 +51,7 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "sphinx_rtd_theme"
+html_theme = "furo"
 
 # Read The Docs theme options
 html_theme_options = {
@@ -77,9 +77,9 @@ html_static_path = ["_static"]
 latex_documents = [
     (
         "index",
-        "pybloomfiltermmap3_manual.tex",
-        "pybloomfiltermmap3 documentation",
-        "Michael Axiak, Prashant Sinha, Vytautas Mizgiris and others",
+        "pybloomer_manual.tex",
+        "pybloomer documentation",
+        "Michael Axiak, Dr. Masroor Ehsan, Prashant Sinha, Vytautas Mizgiris and others",
         "manual",
     )
 ]
