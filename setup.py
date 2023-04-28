@@ -66,7 +66,7 @@ ext_modules = [Extension("pybloomer", ext_files)]
 
 setup(
     name="pybloomer",
-    version="0.5.7",
+    version="0.6.0",
     author="Dr. Masroor Ehsan",
     author_email="masroore+pypi@gmail.com",
     url="https://github.com/masroore/pybloomer",

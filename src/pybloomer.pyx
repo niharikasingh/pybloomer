@@ -1,6 +1,6 @@
 # cython: language_level=3
 
-VERSION = (0, 5, 7)
+VERSION = (0, 6, 0)
 AUTHOR = "Michael Axiak, Dr. Masroor Ehsan"
 
 __VERSION__ = VERSION
