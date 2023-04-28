@@ -1,25 +1,23 @@
 # cython: language_level=3
 
 VERSION = (0, 5, 7)
-AUTHOR = "Michael Axiak"
+AUTHOR = "Michael Axiak, Dr. Masroor Ehsan"
 
 __VERSION__ = VERSION
 
 
-cimport cbloomfilter
-cimport cpython
-
 import array
-from base64 import b64encode, b64decode
 import errno as eno
 import math
 import os
 import random
 import shutil
-import sys
 import warnings
 import zlib
+from base64 import b64encode, b64decode
 
+cimport cbloomfilter
+cimport cpython
 
 cdef extern int errno
 cdef NoConstruct = object()
