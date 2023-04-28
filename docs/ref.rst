@@ -2,7 +2,7 @@
 BloomFilter Class Reference
 ===========================
 
-.. module:: pybloomfilter
+.. module:: pybloomer
    :platform: Unix, Windows
    :synopsis: a fast implementation of Bloom filter for Python
 
@@ -252,7 +252,7 @@ Magic Methods
         >>> len(bf2)
         Traceback (most recent call last):
             ...
-        pybloomfilter.IndeterminateCountError: Length of BloomFilter object is unavailable after intersection or union called.
+        pybloomer.IndeterminateCountError: Length of BloomFilter object is unavailable after intersection or union called.
 
     :param item: hashable object
     :rtype: int

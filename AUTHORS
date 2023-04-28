@@ -1,7 +1,6 @@
 Current maintainers
 ^^^^^^^^^^^^^^^^^^^
-- Prashant Sinha (`@prashnts <prashnts_>`_)
-- Vytautas Mizgiris (`@vmizg <vmizg_>`_)
+- Masroor Ehsan (`@masroore <masroore_>`_)
 
 Original author
 ^^^^^^^^^^^^^^^
@@ -18,5 +17,4 @@ Contributors
 - xyb: added bit_count and approximation of set elements.
 
 .. _axiak: https://github.com/axiak
-.. _prashnts: https://github.com/prashnts
-.. _vmizg: https://github.com/vmizg
+.. _masroore: https://github.com/masroore

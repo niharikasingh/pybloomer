@@ -3,10 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-pybloomfiltermmap3: a fast implementation of Bloom filter for Python
+pybloomer: a fast implementation of Bloom filter for Python
 ====================================================================
 
-`pybloomfiltermmap3` is a Python 3  fork of `pybloomfiltermmap` by `Michael Axiak (@axiak) <https://github.com/axiak>`_.
+`pybloomer` is a Python 3  fork of `pybloomfiltermmap` by `Michael Axiak (@axiak) <https://github.com/axiak>`_.
 
 Bloom filter is a probabilistic data structure used to test whether an element is a member of a set.
 The `wikipedia page <http://en.wikipedia.org/wiki/Bloom_filter>`_ has further information on their nature.
@@ -18,7 +18,7 @@ Here's a quick example:
 
 .. code-block:: python
 
-    >>> from pybloomfilter import BloomFilter
+    >>> from pybloomer import BloomFilter
 
     >>> bf = BloomFilter(10000000, 0.01, 'filter.bloom')
     >>> with open("/usr/share/dict/words") as f:
@@ -67,7 +67,7 @@ In case you are using Python 2, please see `pybloomfiltermmap <https://github.co
 
 To build and install::
 
-    $ pip install pybloomfiltermmap3
+    $ pip install pybloomer
 
 
 Develop
