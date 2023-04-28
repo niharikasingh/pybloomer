@@ -53,7 +53,7 @@ To create an in-memory filter, simply omit the file location:
 
 *Caveat*: in-memory filters cannot be persisted to disk.
 
-## Docs
+## Documentation
 
 Current docs are available at [pybloomer.rtfd.io](https://pybloomer.readthedocs.io/en/latest).
 
@@ -63,6 +63,7 @@ Suggestions, bug reports, and / or patches are welcome!
 
 When contributing, you should set up an appropriate Python 3 environment and install the dependencies listed
 in `requirements-dev.txt`.
+
 Package installation depends on a generated `pybloomer.c` file, which requires Cython module to be in your current
 environment.
 
