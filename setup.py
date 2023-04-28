@@ -3,8 +3,8 @@ import sys
 
 from setuptools import setup, Extension
 
-if sys.version_info < (3, 5):
-    raise SystemError("This package is for Python 3.5 and above.")
+if sys.version_info < (3, 8):
+    raise SystemError("This package is for Python 3.8 and above.")
 
 here = os.path.dirname(__file__)
 
@@ -76,7 +76,7 @@ setup(
     license="MIT License",
     test_suite="tests.test_all",
     ext_modules=ext_modules,
-    python_requires=">=3.5, <4",
+    python_requires=">=3.8, <4",
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
@@ -86,6 +86,11 @@ setup(
         "Programming Language :: Cython",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     **setup_kwargs
